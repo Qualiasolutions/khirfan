@@ -9,6 +9,7 @@ import { Bell, Globe, UserCircle, ShieldCheck, Sparkles, LayoutGrid } from "luci
 import { cn } from "@/lib/utils";
 import { OmniSearch } from "@/app/(components)/OmniSearch";
 import { useEffect, useState } from "react";
+import { Footer } from "@/components/Footer";
 
 const navItems = [
   { href: "/", key: "overview" },
@@ -129,6 +130,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </header>
         <main className="flex-1 p-4 lg:p-6">{children}</main>
+        <Footer />
         <OmniSearch />
       </div>
     </div>

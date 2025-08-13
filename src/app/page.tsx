@@ -19,6 +19,30 @@ export default function Home() {
     { month: "May", efficiency: 92 },
     { month: "Jun", efficiency: 95 },
   ];
+
+  const handleAIAssist = () => {
+    // Demo sequence
+    toast.success("🤖 AI Assistant activated!");
+    
+    setTimeout(() => {
+      toast.info("📊 Analyzing your practice data...", {
+        duration: 2000,
+      });
+    }, 1000);
+
+    setTimeout(() => {
+      toast.success("✨ Found 3 optimization opportunities!", {
+        duration: 3000,
+      });
+    }, 3000);
+
+    setTimeout(() => {
+      toast("💡 Recommendations ready", {
+        description: "• Automate 5 recurring workflows\n• Prioritize 2 high-risk matters\n• Schedule 3 client follow-ups",
+        duration: 5000,
+      });
+    }, 5000);
+  };
   
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
@@ -44,7 +68,7 @@ export default function Home() {
           <Button 
             variant="outline" 
             size="sm"
-            onClick={() => toast.success("AI Assistant activated!")}
+            onClick={handleAIAssist}
           >
             <Sparkles className="h-4 w-4 mr-2" /> AI Assist
           </Button>
