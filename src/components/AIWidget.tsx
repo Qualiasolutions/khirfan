@@ -127,29 +127,31 @@ export function AIWidget({ open, onOpenChange, onMaximize }: AIWidgetProps) {
           initial={{ opacity: 0, x: 300, y: 20 }}
           animate={{ opacity: 1, x: 0, y: 0 }}
           exit={{ opacity: 0, x: 300, y: 20 }}
-          className="fixed bottom-4 right-4 z-50 w-96 h-[500px] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col overflow-hidden"
+          className="fixed bottom-4 right-4 z-50 w-full max-w-sm sm:max-w-md lg:max-w-lg xl:w-96 h-[85vh] max-h-[500px] sm:h-[500px] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-800 flex flex-col overflow-hidden mx-4 sm:mx-0"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-cyan-50 to-purple-50 dark:from-cyan-900/20 dark:to-purple-900/20">
-            <div className="flex items-center gap-2">
-              <div className="h-7 w-7 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center">
-                <Bot className="h-4 w-4 text-white" />
+          <div className="flex items-center justify-between p-3 sm:p-4 border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-cyan-50 to-purple-50 dark:from-cyan-900/20 dark:to-purple-900/20">
+            <div className="flex items-center gap-2 min-w-0 flex-1">
+              <div className="h-6 w-6 sm:h-7 sm:w-7 rounded-lg bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center flex-shrink-0">
+                <Bot className="h-3 w-3 sm:h-4 sm:w-4 text-white" />
               </div>
-              <div>
-                <div className="font-medium text-sm">AI Assistant</div>
+              <div className="min-w-0">
+                <div className="font-medium text-xs sm:text-sm truncate">AI Assistant</div>
                 <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                  Online
+                  <span className="hidden sm:inline">Online</span>
+                  <span className="sm:hidden">●</span>
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 flex-shrink-0">
               {onMaximize && (
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={onMaximize}
-                  className="h-7 w-7 p-0"
+                  className="h-6 w-6 sm:h-7 sm:w-7 p-0"
+                  title="Open full interface"
                 >
                   <Maximize2 className="h-3 w-3" />
                 </Button>
@@ -158,7 +160,8 @@ export function AIWidget({ open, onOpenChange, onMaximize }: AIWidgetProps) {
                 variant="ghost"
                 size="sm"
                 onClick={() => onOpenChange(false)}
-                className="h-7 w-7 p-0"
+                className="h-6 w-6 sm:h-7 sm:w-7 p-0"
+                title="Close"
               >
                 <X className="h-3 w-3" />
               </Button>
@@ -166,13 +169,13 @@ export function AIWidget({ open, onOpenChange, onMaximize }: AIWidgetProps) {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 space-y-3">
+          <div className="flex-1 overflow-y-auto p-2 sm:p-3 space-y-2 sm:space-y-3">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
               >
-                <div className={`max-w-[85%] rounded-lg p-3 text-sm ${
+                <div className={`max-w-[90%] sm:max-w-[85%] rounded-lg p-2 sm:p-3 text-xs sm:text-sm ${
                   message.type === "user" 
                     ? "bg-cyan-600 text-white" 
                     : "bg-gray-100 dark:bg-gray-800"
@@ -183,7 +186,7 @@ export function AIWidget({ open, onOpenChange, onMaximize }: AIWidgetProps) {
                       <span className="text-xs font-medium">AI</span>
                     </div>
                   )}
-                  <div className="whitespace-pre-line">{message.content}</div>
+                  <div className="whitespace-pre-line leading-relaxed">{message.content}</div>
                   {message.suggestions && (
                     <div className="mt-2 flex flex-wrap gap-1">
                       {message.suggestions.map((suggestion, index) => (
@@ -193,7 +196,7 @@ export function AIWidget({ open, onOpenChange, onMaximize }: AIWidgetProps) {
                           className="text-xs px-2 py-1 bg-white/10 hover:bg-white/20 rounded-md border border-gray-200 dark:border-gray-700 transition-colors flex items-center gap-1"
                         >
                           <Lightbulb className="h-2.5 w-2.5" />
-                          {suggestion}
+                          <span className="truncate max-w-20 sm:max-w-none">{suggestion}</span>
                         </button>
                       ))}
                     </div>
@@ -204,7 +207,7 @@ export function AIWidget({ open, onOpenChange, onMaximize }: AIWidgetProps) {
             
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-3">
+                <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-2 sm:p-3">
                   <div className="flex items-center gap-1 mb-1 text-cyan-600 dark:text-cyan-400">
                     <Sparkles className="h-3 w-3" />
                     <span className="text-xs font-medium">AI</span>
@@ -221,20 +224,20 @@ export function AIWidget({ open, onOpenChange, onMaximize }: AIWidgetProps) {
           </div>
 
           {/* Input */}
-          <div className="p-3 border-t border-gray-200 dark:border-gray-800">
+          <div className="p-2 sm:p-3 border-t border-gray-200 dark:border-gray-800">
             <div className="flex gap-2">
               <Input
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Ask me anything..."
-                className="flex-1 text-sm"
+                className="flex-1 text-xs sm:text-sm h-8 sm:h-auto"
               />
               <Button 
                 onClick={handleSend}
                 disabled={!inputValue.trim() || isTyping}
                 size="sm"
-                className="px-3"
+                className="px-2 sm:px-3 h-8 sm:h-auto"
               >
                 <Send className="h-3 w-3" />
               </Button>

@@ -141,28 +141,31 @@ export default function AIAssistantPage() {
   };
 
   return (
-    <div className="h-[calc(100vh-2rem)] flex flex-col">
-      <div className="mb-6">
-        <div className="flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center">
-            <Bot className="h-6 w-6 text-white" />
+    <div className="h-[calc(100vh-4rem)] sm:h-[calc(100vh-2rem)] flex flex-col">
+      <div className="mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl bg-gradient-to-br from-cyan-500 to-purple-600 flex items-center justify-center">
+              <Bot className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
+            </div>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-semibold">AI Assistant</h1>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                Get personalized suggestions to enhance your legal practice platform
+              </p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-2xl font-semibold">AI Assistant</h1>
-            <p className="text-sm text-gray-600 dark:text-gray-400">
-              Get personalized suggestions to enhance your legal practice platform
-            </p>
-          </div>
-          <div className="ml-auto flex items-center gap-2 text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1.5 rounded-full">
+          <div className="sm:ml-auto flex items-center gap-2 text-xs bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1.5 rounded-full self-start sm:self-center">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            Online & Ready
+            <span className="hidden sm:inline">Online & Ready</span>
+            <span className="sm:hidden">Online</span>
           </div>
         </div>
       </div>
 
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto border border-gray-200 dark:border-gray-800 rounded-xl bg-white/50 dark:bg-gray-900/50">
-        <div className="p-6 space-y-6">
+        <div className="p-3 sm:p-6 space-y-4 sm:space-y-6">
           <AnimatePresence>
             {messages.map((message) => (
               <motion.div
@@ -171,28 +174,28 @@ export default function AIAssistantPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}
               >
-                <div className={`max-w-[85%] rounded-xl p-4 shadow-sm ${
+                <div className={`max-w-[95%] sm:max-w-[85%] rounded-xl p-3 sm:p-4 shadow-sm ${
                   message.type === "user" 
                     ? "bg-cyan-600 text-white" 
                     : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 }`}>
                   {message.type === "assistant" && (
-                    <div className="flex items-center gap-2 mb-3 text-cyan-600 dark:text-cyan-400">
+                    <div className="flex items-center gap-2 mb-2 sm:mb-3 text-cyan-600 dark:text-cyan-400">
                       <Sparkles className="h-4 w-4" />
-                      <span className="text-sm font-medium">AI Assistant</span>
+                      <span className="text-xs sm:text-sm font-medium">AI Assistant</span>
                     </div>
                   )}
-                  <div className="whitespace-pre-line text-sm leading-relaxed">{message.content}</div>
+                  <div className="whitespace-pre-line text-xs sm:text-sm leading-relaxed">{message.content}</div>
                   {message.suggestions && (
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="mt-3 sm:mt-4 flex flex-wrap gap-1 sm:gap-2">
                       {message.suggestions.map((suggestion, index) => (
                         <button
                           key={index}
                           onClick={() => handleSuggestionClick(suggestion)}
-                          className="text-xs px-3 py-1.5 bg-white/10 hover:bg-white/20 rounded-full border border-gray-200 dark:border-gray-700 transition-colors flex items-center gap-1"
+                          className="text-xs px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 hover:bg-white/20 rounded-full border border-gray-200 dark:border-gray-700 transition-colors flex items-center gap-1"
                         >
                           <Lightbulb className="h-3 w-3" />
-                          {suggestion}
+                          <span className="truncate">{suggestion}</span>
                         </button>
                       ))}
                     </div>
@@ -208,10 +211,10 @@ export default function AIAssistantPage() {
               animate={{ opacity: 1 }}
               className="flex justify-start"
             >
-              <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+              <div className="bg-gray-100 dark:bg-gray-800 rounded-xl p-3 sm:p-4 shadow-sm">
                 <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 mb-2">
                   <Sparkles className="h-4 w-4" />
-                  <span className="text-sm font-medium">AI Assistant</span>
+                  <span className="text-xs sm:text-sm font-medium">AI Assistant</span>
                 </div>
                 <div className="flex gap-1">
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
@@ -226,25 +229,28 @@ export default function AIAssistantPage() {
       </div>
 
       {/* Input Area */}
-      <div className="mt-4 border border-gray-200 dark:border-gray-800 rounded-xl bg-white dark:bg-gray-900 p-4">
-        <div className="flex gap-3">
+      <div className="mt-3 sm:mt-4 border border-gray-200 dark:border-gray-800 rounded-xl bg-white dark:bg-gray-900 p-3 sm:p-4">
+        <div className="flex gap-2 sm:gap-3">
           <Input
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask about platform customizations, practice improvements, or specific legal tech needs..."
-            className="flex-1"
+            placeholder="Ask about platform customizations..."
+            className="flex-1 text-sm"
           />
           <Button 
             onClick={handleSend}
             disabled={!inputValue.trim() || isTyping}
-            className="px-6"
+            className="px-3 sm:px-6"
           >
             <Send className="h-4 w-4" />
           </Button>
         </div>
-        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400 hidden sm:block">
           💡 Try asking about: FIDIC automation, M&A workflows, client portals, document templates, or performance analytics
+        </div>
+        <div className="mt-2 text-xs text-gray-500 dark:text-gray-400 sm:hidden">
+          💡 Ask about: FIDIC, M&A, clients, documents, analytics
         </div>
       </div>
     </div>
