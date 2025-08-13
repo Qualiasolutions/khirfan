@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
 import { TrendingDown, TrendingUp, Timer, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { SimpleAreaChart } from "@/components/ui/Charts";
 import { toast } from "sonner";
+import { AIAssistantChat } from "@/components/AIAssistantChat";
 
 export default function Home() {
   const { t } = useTranslation();
+  const [chatOpen, setChatOpen] = useState(false);
   
   // Mock performance data
   const performanceData = [
@@ -21,27 +24,8 @@ export default function Home() {
   ];
 
   const handleAIAssist = () => {
-    // Demo sequence
+    setChatOpen(true);
     toast.success("🤖 AI Assistant activated!");
-    
-    setTimeout(() => {
-      toast.info("📊 Analyzing your practice data...", {
-        duration: 2000,
-      });
-    }, 1000);
-
-    setTimeout(() => {
-      toast.success("✨ Found 3 optimization opportunities!", {
-        duration: 3000,
-      });
-    }, 3000);
-
-    setTimeout(() => {
-      toast("💡 Recommendations ready", {
-        description: "• Automate 5 recurring workflows\n• Prioritize 2 high-risk matters\n• Schedule 3 client follow-ups",
-        duration: 5000,
-      });
-    }, 5000);
   };
   
   return (
@@ -86,6 +70,8 @@ export default function Home() {
         <MiniWidget title="Client Satisfaction" items={["NPS 62", "4.7/5 avg"]} />
         <MiniWidget title="Data Compliance Status" items={["PDP 2023 - Pass", "3 warnings"]} />
       </div>
+      
+      <AIAssistantChat open={chatOpen} onOpenChange={setChatOpen} />
     </div>
   );
 }

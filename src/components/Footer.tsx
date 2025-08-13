@@ -32,7 +32,7 @@ export function Footer() {
           <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-500">
             <span>Built with</span>
             <Heart className="h-3 w-3 text-red-500" />
-            <span>in Jordan</span>
+            <span>in Cyprus for Jordan</span>
           </div>
         </div>
       </div>
