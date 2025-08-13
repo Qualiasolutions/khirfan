@@ -20,6 +20,7 @@ const navItems = [
   { href: "/workflows", key: "workflows" },
   { href: "/billing", key: "billing" },
   { href: "/governance", key: "governance" },
+  { href: "/ai-assistant", key: "aiAssistant" },
   { href: "/settings", key: "settings" },
 ];
 

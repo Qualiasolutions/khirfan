@@ -7,7 +7,7 @@ import { TrendingDown, TrendingUp, Timer, ShieldCheck, Sparkles } from "lucide-r
 import { motion } from "framer-motion";
 import { SimpleAreaChart } from "@/components/ui/Charts";
 import { toast } from "sonner";
-import { AIAssistantChat } from "@/components/AIAssistantChat";
+import { AIWidget } from "@/components/AIWidget";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -71,7 +71,11 @@ export default function Home() {
         <MiniWidget title="Data Compliance Status" items={["PDP 2023 - Pass", "3 warnings"]} />
       </div>
       
-      <AIAssistantChat open={chatOpen} onOpenChange={setChatOpen} />
+      <AIWidget 
+        open={chatOpen} 
+        onOpenChange={setChatOpen}
+        onMaximize={() => window.location.href = '/ai-assistant'}
+      />
     </div>
   );
 }
