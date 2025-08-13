@@ -3,6 +3,8 @@ import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/providers/AppProviders";
 import { AppShell } from "@/components/AppShell";
+import { CommandPalette } from "@/components/CommandPalette";
+import { Toaster } from "@/components/ui/Toaster";
 
 const inter = Inter({ variable: "--font-sans", subsets: ["latin"] });
 const sourceSerif = Source_Serif_4({ variable: "--font-serif", subsets: ["latin"] });
@@ -22,6 +24,8 @@ export default function RootLayout({
       <body className={`${inter.variable} ${sourceSerif.variable} antialiased`}>
         <AppProviders>
           <AppShell>{children}</AppShell>
+          <CommandPalette />
+          <Toaster />
         </AppProviders>
       </body>
     </html>

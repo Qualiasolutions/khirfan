@@ -5,11 +5,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
-import { fetchPracticeAreas } from "@/services/mockService";
 import seed from "@/data/seed.json";
+import type { ResearchRecord } from "@/types/data";
 
 export default function ResearchPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation<"translation", undefined>();
   const [lens, setLens] = useState(false);
   const results = seed.research;
   return (
@@ -30,7 +30,7 @@ export default function ResearchPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
-            {results.map((r: any, idx: number) => (
+            {(results as ResearchRecord[]).map((r, idx) => (
               <div key={idx} className="rounded-xl border border-gray-100 dark:border-gray-800 p-4">
                 <div className="text-sm opacity-70">{r.type} • {r.jurisdiction}</div>
                 <div className="mt-1 font-medium">{r.title}</div>

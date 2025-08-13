@@ -2,11 +2,24 @@
 
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/Button";
-import { TrendingDown, TrendingUp, Timer, ShieldCheck, Play } from "lucide-react";
+import { TrendingDown, TrendingUp, Timer, ShieldCheck, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { SimpleAreaChart } from "@/components/ui/Charts";
+import { toast } from "sonner";
 
 export default function Home() {
   const { t } = useTranslation();
+  
+  // Mock performance data
+  const performanceData = [
+    { month: "Jan", efficiency: 72 },
+    { month: "Feb", efficiency: 78 },
+    { month: "Mar", efficiency: 85 },
+    { month: "Apr", efficiency: 88 },
+    { month: "May", efficiency: 92 },
+    { month: "Jun", efficiency: 95 },
+  ];
+  
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
       <div className="xl:col-span-2 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 bg-white/50 dark:bg-black/20">
@@ -27,14 +40,21 @@ export default function Home() {
       </div>
       <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 bg-white/50 dark:bg-black/20">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-semibold">Overview Video</h2>
-          <Button variant="outline" size="sm">
-            <Play className="h-4 w-4 mr-2" /> Watch
+          <h2 className="font-semibold">System Efficiency</h2>
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => toast.success("AI Assistant activated!")}
+          >
+            <Sparkles className="h-4 w-4 mr-2" /> AI Assist
           </Button>
         </div>
-        <div className="aspect-video rounded-xl bg-gray-100 dark:bg-gray-800 grid place-items-center text-sm opacity-70">
-          Video placeholder
-        </div>
+        <SimpleAreaChart 
+          data={performanceData} 
+          dataKey="efficiency" 
+          xDataKey="month"
+          height={200}
+        />
       </div>
       <div className="xl:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
         <MiniWidget title="Next Deadlines" items={["Hearing - 12 Apr", "Filing - 19 Apr"]} />

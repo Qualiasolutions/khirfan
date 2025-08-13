@@ -4,10 +4,11 @@ import { useTranslation } from "react-i18next";
 import seed from "@/data/seed.json";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
+import type { WorkflowRecord } from "@/types/data";
 
 export default function WorkflowsPage() {
-  const { t } = useTranslation();
-  const flows = seed.workflows as any[];
+  const { t } = useTranslation<"translation", undefined>();
+  const flows = seed.workflows as WorkflowRecord[];
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-semibold">{t("workflows")}</h1>

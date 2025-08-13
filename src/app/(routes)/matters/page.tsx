@@ -7,15 +7,24 @@ import { KanbanSquare, List, CalendarDays } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { Input } from "@/components/ui/Input";
 import { Badge } from "@/components/ui/Badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/Table";
 import { fetchMatters } from "@/services/mockService";
 import { useEffect } from "react";
+import type { Matter } from "@/types/data";
 
 type ViewMode = "list" | "board" | "calendar";
 
 export default function MattersPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation<"translation", undefined>();
   const [mode, setMode] = useState<ViewMode>("list");
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<Matter[]>([]);
 
   useEffect(() => {
     fetchMatters().then(setItems);
@@ -50,36 +59,34 @@ export default function MattersPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm">
-                <thead className="text-left opacity-70">
-                  <tr>
-                    <th className="py-2 pr-4">Matter #</th>
-                    <th className="py-2 pr-4">Client</th>
-                    <th className="py-2 pr-4">Practice Area</th>
-                    <th className="py-2 pr-4">Stage</th>
-                    <th className="py-2 pr-4">Owner</th>
-                    <th className="py-2 pr-4">Risk</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {items.map((m) => (
-                    <tr key={m.id} className="border-t border-gray-100 dark:border-gray-800">
-                      <td className="py-3 pr-4 font-medium">{m.id}</td>
-                      <td className="py-3 pr-4">{m.client}</td>
-                      <td className="py-3 pr-4"><Badge label={m.practiceArea} tone="info" /></td>
-                      <td className="py-3 pr-4"><Badge label={m.stage} tone="neutral" /></td>
-                      <td className="py-3 pr-4">{m.owner}</td>
-                      <td className="py-3 pr-4">
-                        {m.risk === "High" && <Badge label="high" tone="danger" />}
-                        {m.risk === "Medium" && <Badge label="medium" tone="warning" />}
-                        {m.risk === "Low" && <Badge label="low" tone="success" />}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Matter #</TableHead>
+                  <TableHead>Client</TableHead>
+                  <TableHead>Practice Area</TableHead>
+                  <TableHead>Stage</TableHead>
+                  <TableHead>Owner</TableHead>
+                  <TableHead>Risk</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {items.map((m) => (
+                  <TableRow key={m.id}>
+                    <TableCell className="font-medium">{m.id}</TableCell>
+                    <TableCell>{m.client}</TableCell>
+                    <TableCell><Badge label={m.practiceArea} tone="info" /></TableCell>
+                    <TableCell><Badge label={m.stage} tone="neutral" /></TableCell>
+                    <TableCell>{m.owner}</TableCell>
+                    <TableCell>
+                      {m.risk === "High" && <Badge label="high" tone="danger" />}
+                      {m.risk === "Medium" && <Badge label="medium" tone="warning" />}
+                      {m.risk === "Low" && <Badge label="low" tone="success" />}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
       )}

@@ -5,10 +5,11 @@ import seed from "@/data/seed.json";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { Progress } from "@/components/ui/Progress";
 import { Badge } from "@/components/ui/Badge";
+import type { ClientRecord } from "@/types/data";
 
 export default function ClientsPage() {
-  const { t } = useTranslation();
-  const clients = seed.clients as any[];
+  const { t } = useTranslation<"translation", undefined>();
+  const clients = seed.clients as ClientRecord[];
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-semibold">{t("clients")}</h1>

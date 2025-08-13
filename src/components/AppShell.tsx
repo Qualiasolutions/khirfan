@@ -53,7 +53,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                   active ? "bg-cyan-50 text-cyan-700 dark:bg-cyan-900/20 dark:text-cyan-300" : "hover:bg-gray-100 dark:hover:bg-gray-800"
                 )}
               >
-                {t(item.key as any)}
+                {t(item.key)}
               </Link>
             );
           })}
@@ -93,8 +93,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <Button
                 key={r.k}
                 size="sm"
-                variant={mounted && role === (r.k as any) ? "default" : "outline"}
-                onClick={() => setRole(r.k as any)}
+                variant={mounted && role === r.k ? "default" : "outline"}
+                onClick={() => setRole(r.k as "partner" | "associate" | "paralegal" | "client")}
               >
                 {r.label}
               </Button>
@@ -117,7 +117,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </Button>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="sm" aria-label={t("notifications") as string} onClick={() => toggleNotifications(true)}>
+            <Button variant="ghost" size="sm" aria-label={t("notifications")} onClick={() => toggleNotifications(true)}>
               <Bell className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="sm">

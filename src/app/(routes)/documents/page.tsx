@@ -7,13 +7,14 @@ import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { fetchDocuments } from "@/services/mockService";
 import { useEffect } from "react";
+import type { DocumentItem } from "@/types/data";
 
 type Flow = "library" | "generate" | "review";
 
 export default function DocumentsPage() {
-  const { t } = useTranslation();
+  const { t } = useTranslation<"translation", undefined>();
   const [flow, setFlow] = useState<Flow>("library");
-  const [docs, setDocs] = useState<any[]>([]);
+  const [docs, setDocs] = useState<DocumentItem[]>([]);
   useEffect(() => {
     fetchDocuments().then(setDocs);
   }, []);

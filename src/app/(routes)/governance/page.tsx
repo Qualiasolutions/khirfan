@@ -4,10 +4,11 @@ import { useTranslation } from "react-i18next";
 import seed from "@/data/seed.json";
 import { Card, CardContent, CardHeader } from "@/components/ui/Card";
 import { Progress } from "@/components/ui/Progress";
+import type { GovernanceData } from "@/types/data";
 
 export default function GovernancePage() {
-  const { t } = useTranslation();
-  const g = seed.governance as any;
+  const { t } = useTranslation<"translation", undefined>();
+  const g = seed.governance as GovernanceData;
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-semibold">{t("governance")}</h1>
