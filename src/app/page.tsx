@@ -1,103 +1,69 @@
-import Image from "next/image";
+"use client";
+
+import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/Button";
+import { TrendingDown, TrendingUp, Timer, ShieldCheck, Play } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const { t } = useTranslation();
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div className="xl:col-span-2 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 bg-white/50 dark:bg-black/20">
+        <div className="flex items-center gap-4">
+          <div className="h-12 w-12 rounded-2xl bg-cyan-600 text-white flex items-center justify-center">
+            <ShieldCheck className="h-7 w-7" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-serif font-semibold">AI that augments your practice, not replaces it.</h1>
+            <p className="opacity-70 text-sm">{t("poweredBy")}</p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <KpiCard icon={<Timer className="h-5 w-5" />} title="Turnaround time" value="↓ 40–70%" trend="positive" />
+          <KpiCard icon={<TrendingDown className="h-5 w-5" />} title="Manual errors" value="↓ 32%" trend="positive" />
+          <KpiCard icon={<TrendingUp className="h-5 w-5" />} title="Client SLAs met" value="↑ 98%" trend="positive" />
+        </div>
+      </div>
+      <div className="rounded-2xl border border-gray-200 dark:border-gray-800 p-6 bg-white/50 dark:bg-black/20">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="font-semibold">Overview Video</h2>
+          <Button variant="outline" size="sm">
+            <Play className="h-4 w-4 mr-2" /> Watch
+          </Button>
+        </div>
+        <div className="aspect-video rounded-xl bg-gray-100 dark:bg-gray-800 grid place-items-center text-sm opacity-70">
+          Video placeholder
+        </div>
+      </div>
+      <div className="xl:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <MiniWidget title="Next Deadlines" items={["Hearing - 12 Apr", "Filing - 19 Apr"]} />
+        <MiniWidget title="Active Matters" items={["KPA-2025-0012", "KPA-2025-0045"]} />
+        <MiniWidget title="Client Satisfaction" items={["NPS 62", "4.7/5 avg"]} />
+        <MiniWidget title="Data Compliance Status" items={["PDP 2023 - Pass", "3 warnings"]} />
+      </div>
+    </div>
+  );
+}
+
+function KpiCard({ icon, title, value, trend }: { icon: React.ReactNode; title: string; value: string; trend: "positive" | "negative" }) {
+  return (
+    <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }} className="rounded-xl border border-gray-200 dark:border-gray-800 p-4">
+      <div className="flex items-center gap-2 text-sm opacity-70">{icon} {title}</div>
+      <div className={"mt-1 text-2xl font-semibold " + (trend === "positive" ? "text-emerald-600" : "text-rose-600")}>{value}</div>
+    </motion.div>
+  );
+}
+
+function MiniWidget({ title, items }: { title: string; items: string[] }) {
+  return (
+    <div className="rounded-xl border border-gray-200 dark:border-gray-800 p-4 bg-white/50 dark:bg-black/20">
+      <div className="text-sm font-medium mb-2">{title}</div>
+      <ul className="space-y-1 text-sm opacity-80">
+        {items.map((i) => (
+          <li key={i}>• {i}</li>
+        ))}
+      </ul>
     </div>
   );
 }

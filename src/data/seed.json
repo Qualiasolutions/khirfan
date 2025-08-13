@@ -1,0 +1,52 @@
+{
+  "practiceAreas": [
+    "Commercial & Corporate (Tier 2)",
+    "M&A",
+    "Dispute Resolution (Tier 2)",
+    "Construction (FIDIC)",
+    "Arbitration"
+  ],
+  "matters": [
+    { "id": "KPA-2025-0012", "client": "Jordan Construction Co.", "practiceArea": "Construction (FIDIC)", "stage": "Hearing", "owner": "Hazem Khirfan", "nextAction": "File FIDIC NOI", "deadline": "2025-04-19", "risk": "High" },
+    { "id": "KPA-2025-0008", "client": "Tech Innovations Ltd.", "practiceArea": "Corporate/M&A", "stage": "Review", "owner": "Sarah Ahmad", "nextAction": "Due diligence checklist", "deadline": "2025-04-15", "risk": "Medium" },
+    { "id": "KPA-2025-0015", "client": "Energy Partners JO", "practiceArea": "Dispute Resolution", "stage": "Drafting", "owner": "Omar Hassan", "nextAction": "Prepare hearing brief", "deadline": "2025-04-28", "risk": "Low" }
+  ],
+  "documents": [
+    { "id": "DOC-0001", "name": "FIDIC Red Book Amendment - Jordan Construction", "category": "FIDIC", "version": "v2.1", "status": "review" },
+    { "id": "DOC-0002", "name": "Non-Disclosure Agreement - Tech Innovations", "category": "NDAs", "version": "v1.0", "status": "approved" },
+    { "id": "DOC-0003", "name": "Share Purchase Agreement Draft", "category": "Contracts", "version": "v0.3", "status": "draft" }
+  ],
+  "clients": [
+    { "id": "CL-001", "name": "Jordan Construction Co.", "sector": "construction", "sla": "enterprise", "scores": { "engagement": 92, "billing": 78, "satisfaction": 88 } },
+    { "id": "CL-002", "name": "Tech Innovations Ltd.", "sector": "technology", "sla": "premium", "scores": { "engagement": 95, "billing": 98, "satisfaction": 94 } },
+    { "id": "CL-003", "name": "Energy Partners JO", "sector": "energy", "sla": "standard", "scores": { "engagement": 80, "billing": 66, "satisfaction": 76 } }
+  ],
+  "research": [
+    { "type": "statute", "jurisdiction": "Jordan", "title": "Jordan Civil Code - Article 256 (Contract Formation)", "summary": "Defines essential elements for valid contract formation.", "relevance": 95, "date": "2023-01-15" },
+    { "type": "statute", "jurisdiction": "Jordan", "title": "Construction Disputes Act No. 15 of 2022", "summary": "Mandatory mediation before court for disputes over JOD 50,000.", "relevance": 88, "date": "2022-12-01" }
+  ],
+  "workflows": [
+    { "id": "WF-001", "name": "Construction Claim Intake", "tags": ["Construction"], "steps": ["New Construction Claim", "Generate FIDIC Checklist", "Draft Notice of Intent", "Assign to Partner"], "active": true },
+    { "id": "WF-002", "name": "M&A Due Diligence", "tags": ["Corporate"], "steps": ["Due Diligence Request", "Create Clause Risk Map", "Generate Partner Summary"], "active": false }
+  ],
+  "billing": {
+    "wip": 1275,
+    "arAging": 45000,
+    "realization": 92,
+    "profit": 17355,
+    "timeEntries": [
+      { "matter": "KPA-2025-0012", "desc": "Review FIDIC contract terms", "hours": 3.5, "rate": 250 },
+      { "matter": "KPA-2025-0008", "desc": "Due diligence document review", "hours": 2.0, "rate": 200 },
+      { "matter": "KPA-2025-0015", "desc": "Client consultation meeting", "hours": 1.5, "rate": 180 }
+    ],
+    "rateCard": { "Partner": 250, "Senior Associate": 200, "Associate": 180, "Paralegal": 120 }
+  },
+  "governance": {
+    "overall": 94.6,
+    "policies": 12,
+    "lastAuditDays": 15,
+    "pdp": { "Data Mapping": 98, "Consent Management": 95, "Access Controls": 100, "Bias & Quality": 78 }
+  }
+}
+
+
